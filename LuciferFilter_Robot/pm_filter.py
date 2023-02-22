@@ -462,6 +462,19 @@ async def cb_handler(client: Client, query: CallbackQuery):
             parse_mode=enums.ParseMode.HTML
         )       
     elif query.data == "help":
+        await client.send_chat_action(query.message.chat.id, enums.ChatAction.TYPING)
+        await query.message.edit_text(
+            text="☑️ ☐ ☐ ☐"
+        )
+        await query.message.edit_text(
+            text="☑️ ☑️ ☐ ☐"
+        )
+        await query.message.edit_text(
+            text="☑️ ☑️ ☑️ ☐"
+        )
+        await query.message.edit_text(
+            text="☑️ ☑️ ☑️ ☑️"
+        )
         buttons = [[
             InlineKeyboardButton('Connection', callback_data='coct'),
             InlineKeyboardButton('Filters', callback_data='auto_manual'),
@@ -482,25 +495,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('Back', callback_data='start'),
             InlineKeyboardButton('Close', callback_data='close_data'),
         ]]
+        
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
             text=Script.HELP_TXT.format(query.from_user.mention, name=temp.Bot_Name),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
-        await client.send_chat_action(query.message.chat.id, enums.ChatAction.TYPING)
-        await query.message.edit_text(
-            text="☑️ ☐ ☐ ☐"
-        )
-        await query.message.edit_text(
-            text="☑️ ☑️ ☐ ☐"
-        )
-        await query.message.edit_text(
-            text="☑️ ☑️ ☑️ ☐"
-        )
-        await query.message.edit_text(
-            text="☑️ ☑️ ☑️ ☑️"
-        )
+        
     elif "about" in query.data:
         await client.send_chat_action(query.message.chat.id, enums.ChatAction.TYPING)
         return await query.answer("""
